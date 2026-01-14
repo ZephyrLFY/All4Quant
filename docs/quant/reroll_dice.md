@@ -1,76 +1,66 @@
 ---
-title: 经典掷骰子问题：Reroll 策略与期望
+title: 🎲 Reroll 策略与期望
 tags: [Probability, Dynamic Programming, Brainteaser]
 sidebar_label: "001. Reroll Dice"
 ---
 
-# 掷骰子重投问题：最优策略分析
+### Question Description
 
-这是一道非常经典的 Quant 面试题。题目通常表述为：你掷一个公平的六面骰子，你可以选择接受当前点数，或者获得一次（且仅一次）重投的机会。如果你重投，你必须接受第二次的点数。
+> You are offered a game where you roll a fair 6-sided die once. You receive a payout equal to the number rolled (e.g., if you roll a 4, you get $4).
+> 
+> However, after seeing the first roll, you have the option to reject it and roll the die one more time. If you choose to roll a second time, you must accept the result of the second roll as your final payout.
 
-**问题：你的最优策略是什么？该策略下的期望收益是多少？**
-
----
-
-### 💡 核心逻辑：倒推法 (Backward Induction)
-
-解决这类决策问题的核心在于：**当你面临最后一次机会时，你的期望收益是多少？**
-
-1. **最后一次投掷 (Step 2)**：
-   如果你选择了重投，你就没有任何退路了。此时，掷骰子的期望值 $E_2$ 就是一个标准骰子的平均值：
-   $$
-   E_2 = \frac{1+2+3+4+5+6}{6} = 3.5
-   $$
-
-2. **第一次投掷的决策 (Step 1)**：
-   现在你手里拿着第一次投出的点数 $X$。
-   - 如果 $X > E_2$，你应该**停止**（保留当前点数）。
-   - 如果 $X < E_2$，你应该**重投**（追求更高的期望）。
-   - 如果 $X = E_2$，两者皆可（在离散情况下不会发生，$3.5$ 不是整数）。
-
-:::tip 决策准则
-因为 $E_2 = 3.5$，所以：
-- 当 $X \in \{4, 5, 6\}$ 时：**Keep**
-- 当 $X \in \{1, 2, 3\}$ 时：**Reroll**
-:::
+**Question：What's the optimal strategy and the Expected Value under your strategy?**
 
 ---
 
-### 🔢 数学推导
+### Solution
 
-总期望 $E_{total}$ 可以看作是两种情况的加权平均：
+先考虑单独投掷一次骰子时的期望。
+
+$$
+E_{once} = \frac{1+2+3+4+5+6}{6} = 3.5
+$$
+
+Which means, if the result of your first roll is lower than 3.5 (1, 2, and 3), you should try to reroll. Otherwise, you should keep the result.
+
+EV计算则是：
 
 $$
 \begin{aligned}
-E_{total} &= P(X \ge 4) \cdot E[X | X \ge 4] + P(X \le 3) \cdot E_2 \\
-&= \frac{3}{6} \cdot \left( \frac{4+5+6}{3} \right) + \frac{3}{6} \cdot 3.5 \\
-&= \frac{1}{2} \cdot 5 + \frac{1}{2} \cdot 3.5 \\
-&= 2.5 + 1.75 \\
+E_{total} &= P_{keep} \cdot E_{keep} + P_{reroll} \cdot E_{reroll} \\
+&= 0.5 \cdot \frac{4+5+6}{3} + 0.5 \cdot E_{once} \\
+&= 0.5 \cdot 5 + 0.5 \cdot 3.5 \\
 &= 4.25
 \end{aligned}
 $$
 
+---
 
+### Follow Up
+
+> Now imagine the same game, but you have the option to roll up to 3 times in total. If you roll a third time, you must keep that result.
+
+**Question：What's the new optimal strategy and the new Expected Value?**
 
 ---
 
-### 💻 模拟验证 (Python)
+### Solution
 
-我们可以写一个简单的蒙特卡洛模拟来验证这个结果，顺便测试你刚配置好的 **JetBrains Mono** 字体效果。
+由之前的计算结果可知，可以reroll一次的情况下，EV: 3.5 -> 4.25
 
-```python
-import random
+所以我们第一次投掷完是否要reroll的策略需要进行微调：新阈值为4.25，即只有投到5，6时才keep
 
-def simulate_reroll(trials=1000000):
-    total_score = 0
-    for _ in range(trials):
-        first_roll = random.randint(1, 6)
-        # 决策逻辑：如果第一次小于期望值 3.5，则重投
-        if first_roll < 3.5:
-            score = random.randint(1, 6)
-        else:
-            score = first_roll
-        total_score += score
-    return total_score / trials
+而第二次投掷的结果则需要跟3.5进行比较，因为这个时候已经回到了原问题
 
-print(f"模拟期望值: {simulate_reroll():.4f}") # 预期输出接近 4.25
+$$
+\begin{aligned}
+E_{total} &= P_{keep} \cdot E_{keep} + P_{reroll} \cdot E_{reroll} \\
+&= \frac{1}{3} \cdot \frac{5+6}{2} + \frac{2}{3} \cdot 4.25 \\
+&= \frac{14}{3}
+\end{aligned}
+$$
+
+:::tip 问题降级
+在followup中，第一次投掷之后面对的不再是另一次投掷机会，而是另两次，所以期望与投掷一次并不同，需要相对应地调整决策阈值。
+:::

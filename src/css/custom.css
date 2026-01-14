@@ -6,6 +6,7 @@
 
 /* You can override the default Infima variables here. */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
 
 :root {
@@ -19,8 +20,29 @@
   --ifm-code-font-size: 95%;
   --ifm-spacing-horizontal: 4rem;
   --ifm-doc-sidebar-width: 250px;
+  --ifm-font-family-base: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --ifm-line-height-base: 1.65;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.markdown blockquote {
+  border-left: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-content-secondary);
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  font-family: var(--ifm-font-family-base);
+}
+
+.markdown blockquote p {
+  font-size: 0.95em;
+  line-height: 1.6;
 }
 
 code {
