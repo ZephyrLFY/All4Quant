@@ -17,6 +17,8 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  --ifm-spacing-horizontal: 4rem;
+  --ifm-doc-sidebar-width: 250px;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Courier New', Courier, monospace;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
