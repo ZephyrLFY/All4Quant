@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkall_4_quant=globalThis.webpackChunkall_4_quant||[]).push([[8974],{9125(a){a.exports=JSON.parse('{"metadata":{"permalink":"/All4Quant/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":5,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

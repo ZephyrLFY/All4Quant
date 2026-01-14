@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkall_4_quant=globalThis.webpackChunkall_4_quant||[]).push([[1903],{1912(l){l.exports=JSON.parse('{"blogBasePath":"/All4Quant/blog","blogTitle":"Blog","authorsListPath":"/All4Quant/blog/authors"}')}}]);
