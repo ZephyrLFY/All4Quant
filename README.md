@@ -1,41 +1,13 @@
-# Website
+# All4Quant: The Pursuit of Alpha 📈
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+A structured repository dedicated to mastering **Quantitative Finance** and **Algorithmic Problem Solving**.
 
-## Installation
+## 🎯 Project Goals
+This project serves as a living document of rigorous proofs, optimized code, and strategic intuition required for top-tier Quant roles.
 
-```bash
-yarn
-```
+## 🏛️ Content Overview
+- **Quantitative Math**: Probability, Stochastic Calculus, and Brainteasers (e.g., *Reroll Dice Problems*).
+- **Algorithm & Coding**: Curated LeetCode solutions and data structure deep-dives.
 
-## Local Development
-
-```bash
-yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```bash
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## 🛠️ Tech Stack
+Built with [Docusaurus](https://docusaurus.io/), supporting **KaTeX** for mathematical typesetting and **Prism** for code highlighting.
