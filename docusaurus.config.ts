@@ -20,12 +20,13 @@ const config: Config = {
   url: 'https://ZephyrLFY.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/all4quant/',
+  baseUrl: '/All4Quant/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'ZephyrLFY', // Usually your GitHub org/user name.
-  projectName: 'all4quant', // Usually your repo name.
+  projectName: 'All4Quant', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
